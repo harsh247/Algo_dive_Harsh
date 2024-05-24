@@ -42,7 +42,6 @@ console.log(`'money','honey'? ${doWordsRhyme('money','honey')}`);
 console.log(`'money','sunny'? ${doWordsRhyme('money','sunny')}`);
 console.log(`'bunny','sunny'? ${doWordsRhyme('bunny','sunny')}`);
 console.log(`'lips','tips'? ${doWordsRhyme('lips','tips')}`);
-console.log(`'kissthelips','tearthehips'? ${doWordsRhyme('kissthelips','tearthehips')}`);
 
 
 
