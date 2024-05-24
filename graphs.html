@@ -1,0 +1,243 @@
+<html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <body>
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+        <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+        <canvas id="myChart3" style="width:100%;max-width:600px"></canvas>
+        <canvas id="myChart4" style="width:100%;max-width:1920px"></canvas>
+        <canvas id="myChart5" style="width:100%;max-width:1920px"></canvas>
+
+
+
+        <img id="quote" width="220" height="277" src="C:\Users\Harsh\Downloads\changes_to_be_a_better_person.jpg" alt="Quote">
+
+<p>Canvas Image:</p>
+
+<canvas id="myCanvas" width="1080" height="1920" style="border:1px solid grey;"></canvas>
+
+        <script>
+            let xValues = new Array(5).fill(0);
+            let xValues_new = new Array(50).fill(0);
+            let x_arr1 = new Array(50).fill(0);
+            x_arr1 = x_arr1.map((el)=>{
+              return Math.floor(Math.random()*50);
+            });
+
+            let x_arr2 = new Array(50).fill(0);
+            x_arr2 = x_arr2.map((el,i)=>{
+              return el+i+1;
+            });
+
+            console.log(x_arr2);
+
+            xValues_new=xValues_new.map((val,i)=>{
+              return Math.ceil(val+Math.random()*10);
+            });
+
+            xValues_new1=xValues_new.map((val,i)=>{
+              return val+i;
+            });
+
+            // xValues_new1=xValues_new.map((val,i)=>{
+            //   return val+i;
+            // });
+
+            xValues=xValues.map((val,i)=>{
+                return val+i;
+            });
+            let xValues_neg = xValues.map((val)=>{
+                return -1*val;
+            });
+            xValues=[...xValues_neg.reverse().slice(0,xValues.length-1),...xValues];
+            console.log(xValues);
+            
+            xValues_new1=[]
+            function prepareData(xValues, func){
+
+                let data = xValues.map((val)=>{
+                    let str = func.replaceAll('x',val.toString());
+                    console.log(`${str}=${eval(str)}`);
+                    return eval(str);
+                });
+                return data;
+            }
+
+
+            function oddEvenData(xValues,func){
+              let data = xValues.map((val)=>{
+                if(val%2==0){
+                  return val*2;
+                }else{
+                  return -val*2;
+                }
+              });
+              return data;
+            }
+
+
+            new Chart("myChart", {
+              type: "line",
+              data: {
+                labels: xValues,
+                datasets: [
+                { 
+                  data: [...prepareData(xValues,'x+3')],
+                  borderColor: "pink",
+                  fill: false
+                },
+                { 
+                  data: [...prepareData(xValues,'2*Math.pow((1-(Math.pow(x,2)/9)),0.5)')],
+                  borderColor: "green",
+                  fill: false
+                },
+                { 
+                  data: [...prepareData(xValues,'-2*Math.pow((1-(Math.pow(x,2)/9)),0.5)')],
+                  borderColor: "red",
+                  fill: false
+                },
+                {
+                  data: [...prepareData(xValues,'Math.sin(x)')],
+                  borderColor: "blue",
+                  fill: false
+                },
+                {
+                  data: [...prepareData(xValues,'x-2')],
+                  borderColor: "orange",
+                  fill: false
+                },
+                {
+                  data: [...prepareData(xValues,'Math.cos(x+Math.PI/2)')],
+                  borderColor: "maroon",
+                  fill: false
+                },
+                {
+                  data: [...prepareData(xValues,'5*(Math.pow(1/Math.cos(x),2)-Math.pow(Math.tan(x),2))')],
+                  borderColor: "yellow",
+                  fill: false
+                },
+                {
+                  data: [...prepareData(xValues,'5*(Math.pow(Math.sin(x),2)+Math.pow(Math.cos(x),2))')],
+                  borderColor: "turquoise",
+                  fill: false
+                }
+            ]
+              },
+              options: {
+                legend: {display: false}
+              }
+            });
+
+            new Chart("myChart4", {
+              type: "line",
+              data: {
+                labels: xValues_new,
+                datasets: [
+                { 
+                  data: [...prepareData(xValues_new,'Math.abs(x)')],
+                  borderColor: "pink",
+                  fill: false
+                },
+                { 
+                  data: [...oddEvenData(xValues_new,'x')],
+                  borderColor: "brown",
+                  fill: false
+                },
+                { 
+                  data: [...oddEvenData(x_arr1,'x').map((val)=>{
+                    return Math.ceil(val/50);
+                  })],
+                  borderColor: "green",
+                  fill: false
+                },
+            ]
+              },
+              options: {
+                legend: {display: false}
+              }
+            });
+
+            new Chart("myChart5", {
+              type: "line",
+              data: {
+                labels: xValues_new,
+                datasets: [
+                { 
+                  data: [...oddEvenData(x_arr2,'x').map((val)=>{
+                    return Math.ceil(val);
+                  })],
+                  borderColor: "green",
+                  fill: false
+                },
+                { 
+                  data: [...oddEvenData(x_arr2,'x').map((val)=>{
+                    return Math.ceil(val/25.5);
+                  })],
+                  borderColor: "blue",
+                  fill: false
+                }
+            ]
+              },
+              options: {
+                legend: {display: false}
+              }
+            });
+
+    var xValues1 = ["Italy", "France", "Spain", "USA", "Argentina"];
+    var yValues1 = [55, 49, 44, 24, 15];
+    var barColors = ["red", "green","blue","orange","brown"];
+
+    new Chart("myChart1", {
+  type: "bar",
+  data: {
+    labels: xValues1,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues1
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Lieracy rates in 2019"
+    }
+  }
+});
+
+var xValues2 = ["Italy", "France", "Spain", "USA", "Argentina"];
+var yValues2 = [55, 49, 44, 24, 15];
+var barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+
+new Chart("myChart3", {
+  type: "pie",
+  data: {
+    labels: xValues2,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues2
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Literacy rates in 2019"
+    }
+  }
+});
+
+window.onload = function() {
+  const canvas = document.getElementById("myCanvas");
+  const ctx = canvas.getContext("2d");
+  const img = document.getElementById("quote");
+  ctx.drawImage(img, 300, 300);
+};
+
+    </script>
+    </body>
+</html>
