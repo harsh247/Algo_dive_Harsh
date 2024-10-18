@@ -1,0 +1,12 @@
+<div class="weather-box">
+    <div class="form-group d-flex">
+    <label class="mr-2">City:</label>
+    <input [(ngModel)]="city" class="form-control city-input" type="text">
+    <button class="m-2 mt-0 mb-0 btn btn-primary" (click)="getWeather()">Search</button>
+    </div>
+    <div class="m-4">
+        <b>Weather Details</b>
+        <div>Temparature: {{temp}} <i>C</i></div>
+        <div>Humidity: {{humidity}} %</div>
+    </div>
+</div>

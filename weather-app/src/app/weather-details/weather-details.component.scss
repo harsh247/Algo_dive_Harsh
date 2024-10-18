@@ -1,0 +1,11 @@
+.weather-box{
+    display: flex;
+    height:420px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .city-input{
+        margin-left: 5px;
+    }
+}
+ 
