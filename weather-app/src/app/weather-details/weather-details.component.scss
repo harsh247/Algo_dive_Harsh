@@ -1,6 +1,6 @@
 .weather-box{
     display: flex;
-    height:420px;
+    height:220px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -8,4 +8,6 @@
         margin-left: 5px;
     }
 }
+
+#map { height: 320px; }
  
