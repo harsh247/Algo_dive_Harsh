@@ -12,8 +12,8 @@ export class WeatherDetailsComponent {
 
   }
 
-  temp:any = 20;
-  humidity = 4;
+  temp:any=undefined;
+  humidity:any = undefined;
   city='';
   baseWeatherURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
 
