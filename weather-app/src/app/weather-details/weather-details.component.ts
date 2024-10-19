@@ -22,6 +22,7 @@ export class WeatherDetailsComponent implements OnInit{
   humidity:any = undefined;
   city='';
   data:any;
+  weather_desc:string='';
   baseWeatherURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
 
   urlSuffix = "&units=metric&APPID=aeb5f03a2edf1f30f04a0300da7e7e6c";
@@ -136,10 +137,10 @@ export class WeatherDetailsComponent implements OnInit{
 
     for(let i=0;i<this.markers.length;i++){
     let elemRef = this.mapMarker.filter((el:any,ind:number)=>{return i==ind});
-    console.log(elemRef);
+    // console.log(elemRef);
     this.markerElement[i] = elemRef[0].nativeElement;
     // this.markerElement = this.markerElement.nativeElement;
-    console.log(this.markerElement[i]);
+    // console.log(this.markerElement[i]);
 
 
     let m = marker(this.markers[i].position,{
@@ -157,11 +158,15 @@ export class WeatherDetailsComponent implements OnInit{
   }
   }
 
+  wind!:number;
+
   getWeather(){
     this.httpClient.get(this.baseWeatherURL+this.city+this.urlSuffix).subscribe((response:any)=>{
       console.log(response);
       this.temp = response['main']['temp'];
       this.humidity = response['main']['humidity'];
+      this.weather_desc = response['weather'][0]['description'];
+      this.wind = Math.floor(response['wind']['speed']*3.6);
     })
   }
 
