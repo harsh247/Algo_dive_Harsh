@@ -13,7 +13,14 @@
 
 <div style="height: 500px"
      leaflet 
-     [leafletOptions]="options">
+     [leafletOptions]="options" (leafletMapReady)="onMapReady($event)" >
+</div>
+
+<div #markers *ngFor="let data of markers">
+<h3>{{ data.name }}</h3>
+<p>
+  {{ data.description }}
+</p>
 </div>
 
 <!-- <div id="map" (click)="onMapClick($event)"></div> -->
