@@ -39,6 +39,10 @@ export class WeatherDetailsComponent implements OnInit{
     center: latLng(31.96, -99.90)
   };
 
+  fitBoundsOptions:any = {
+    maxZoom:8
+  }
+
   markers:any = [
     {
       id: 1,
@@ -159,6 +163,9 @@ export class WeatherDetailsComponent implements OnInit{
   }
 
   wind!:number;
+  lat!:number;
+  lon!:number;
+  fitBounds!:any;
 
   getWeather(){
     this.httpClient.get(this.baseWeatherURL+this.city+this.urlSuffix).subscribe((response:any)=>{
@@ -167,6 +174,26 @@ export class WeatherDetailsComponent implements OnInit{
       this.humidity = response['main']['humidity'];
       this.weather_desc = response['weather'][0]['description'];
       this.wind = Math.floor(response['wind']['speed']*3.6);
+      this.lat = response['coord']['lat'];
+      this.lon = response['coord']['lon'];
+
+      let city = response['name'];
+
+      // let elem = document.createElement('div');
+
+      let m = marker([this.lat,this.lon ],{
+        icon: icon({
+          ...Icon.Default.prototype.options,
+          iconUrl: 'assets/marker-icon.png',
+          iconRetinaUrl: 'assets/marker-icon-2x.png',
+          shadowUrl: 'assets/marker-shadow.png'
+        })
+      });
+
+      m.addTo(this.map);
+      this.fitBounds= [(L.latLng(this.lat-0.25,this.lon-0.4),L.latLng(this.lat+0.25,this.lon+0.4))];
+      //  = this.map.fitBounds
+      // this.map.setBounds();
     })
   }
 

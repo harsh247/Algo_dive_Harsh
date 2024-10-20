@@ -16,7 +16,7 @@
 
 <div style="height: 500px"
      leaflet 
-     [leafletOptions]="options" (leafletMapReady)="onMapReady($event)" >
+     [leafletOptions]="options" (leafletMapReady)="onMapReady($event)" [leafletFitBounds]="fitBounds" [leafletFitBoundsOptions]="fitBoundsOptions">
 </div>
 
 <div #markers *ngFor="let data of markers">
