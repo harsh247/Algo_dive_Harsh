@@ -1,0 +1,68 @@
+.weather-box{
+    display: flex;
+    height:220px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .city-input{
+        margin-left: 5px;
+    }
+}
+
+.weather-info{
+    justify-content: center;
+}
+
+
+.weather-icon{
+    display: flex;
+    align-items: flex-start;
+}
+
+.temp{
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    color:#0000009e;
+}
+
+.temp_unit{
+    display: flex;
+    position: relative;
+    top:28px;
+    font-size: 22px;
+    color:gray;
+    opacity: 0.7;
+}
+
+.weather_details{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    .d-column{
+        display: flex;
+        flex-direction: column;
+
+        .desc{
+            display: block;
+            font-weight: bold;
+            color:#0000009e;
+        }
+
+        .title{
+            color:gray;opacity: 0.7;
+        }
+
+        .value{
+            color:#0000009e;opacity: 1;
+        }
+    }
+}
+
+.radio-margin{
+    margin:5px 8px !important;
+}
+
+.input-type{
+    margin-top: 100px;
+}

@@ -7,11 +7,13 @@ import { WeatherDetailsComponent } from './weather-details/weather-details.compo
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { WeatherInfoComponent } from './weather-info/weather-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherDetailsComponent
+    WeatherDetailsComponent,
+    WeatherInfoComponent
   ],
   imports: [
     BrowserModule,

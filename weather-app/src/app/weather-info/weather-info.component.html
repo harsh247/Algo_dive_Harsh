@@ -1,0 +1,62 @@
+<div class="weather-box">
+
+    <div class="form-group input-type">
+        <div class="m-3"><b>Select Type: </b></div>
+        <div class="mb-3">
+            <input class="form-check-input radio-margin" type="radio" name="weather_type" value="city" (change)="changeType($event.target)">
+            <label class="mb-3"><b>City</b></label>
+
+            <input class="form-check-input radio-margin" type="radio" name="weather_type" value="coord" (change)="changeType($event.target)">
+            <label class="mb-3"><b>Lat. Long. (Coordinates)</b></label>
+        </div>
+    </div>
+
+    <div *ngIf="type=='city'" class="form-group d-flex">
+    <div class="m-3">
+    <label class="m-2"><b>City:</b></label>
+    <input [(ngModel)]="city" class="form-control city-input" type="text">
+    </div>
+    <div class="m-3">
+    <label class="m-2"><b>State Code (optional):</b></label>
+    <input [(ngModel)]="state_code" class="form-control city-input" type="text">
+    </div>
+    <div class="m-3">
+    <label class="m-2"><b>Country Code (optional):</b></label>
+    <input [(ngModel)]="country_code" class="form-control city-input" type="text">
+    </div>
+    <div class="m-3" style="display: flex;align-items:center;flex-direction: column;">
+    <label class="m-2"> </label>
+    <button class="mt-4 mb-0 btn btn-primary" (click)="getWeather()">Search</button>
+    </div>
+    </div>
+
+<div *ngIf="type=='coord'" class="form-group d-flex">
+    <div class="m-3">
+    <label class="m-2"><b>Latitude:</b></label>
+    <input [(ngModel)]="lat" class="form-control city-input" type="text">
+    </div>
+    <div class="m-3">
+    <label class="m-2"><b>Longitude: </b></label>
+    <input [(ngModel)]="lon" class="form-control city-input" type="text">
+    </div>
+    <div class="m-3" style="display: flex;align-items:center;flex-direction: column;">
+    <label class="m-2"> </label>
+    <button class="mt-4 mb-0 btn btn-primary" (click)="getWeather()">Search</button>
+    </div>
+</div>
+
+    <div *ngIf="display" class="d-flex weather-info">
+        <!-- <b>Weather Details</b> -->
+        <div class="weather-icon"><img src="../../assets/{{icon}}.png"></div>
+        <div class="temp">{{temp}}</div>
+        <div class="temp_unit">°C</div>
+        <div class="weather_details">
+        <div class="d-column">
+        <div class="desc">{{weather_desc | titlecase}}</div>
+        <div><span class="title">Humidity: </span> <b class="value">{{humidity}}%</b><span class="title"> Wind: </span><b class="value">{{wind}}km/h</b></div>
+        </div>
+        </div>
+        
+        <!-- <div style="font-size: 18px;font-weight: bold;font-family: Georgia, 'Times New Roman', Times, serif;">{{weather_desc | titlecase}}</div> -->
+    </div>
+</div>
